@@ -218,8 +218,8 @@ int TargetFinder::detectEye(Mat& img, Mat& rtempl, Mat& ltempl, Mat& ftempl, Mat
 		Mat rface = face(Rect(0, 0, face.cols / 2, face.rows));
 		Mat lface = face(Rect(face.cols / 2, 0, face.cols / 2, face.rows));
 		Mat bface = face(Rect(0, face.rows / 2, face.cols, face.rows / 2));
-		//imshow("RightFace", rface);
-		//imshow("LeftFace", lface);
+		imshow("RightFace", rface);
+		imshow("LeftFace", lface);
 		/*eye_cascade.detectMultiScale(face, eyes, 1.1, 2,
 		CV_HAAR_SCALE_IMAGE,
 		cv::Size(20,20)
@@ -250,7 +250,7 @@ int TargetFinder::detectEye(Mat& img, Mat& rtempl, Mat& ltempl, Mat& ftempl, Mat
 			rbox = reyes[0] + cv::Point(faces[i].x, faces[i].y);
 			rtempl = img(rbox);
 			meanStdDev(rtempl, tmean, tstddev, Mat());
-			//imshow("Right Eye Template", rtempl);
+			imshow("Right Eye Template", rtempl);
 			if ((int)tstddev[0] < 10){
 				badTemplate = true;
 			}
@@ -262,7 +262,7 @@ int TargetFinder::detectEye(Mat& img, Mat& rtempl, Mat& ltempl, Mat& ftempl, Mat
 			lbox = leyes[0] + cv::Point(faces[i].x + faces[i].width / 2, faces[i].y);
 			ltempl = img(lbox);
 			meanStdDev(ltempl, tmean, tstddev, Mat());
-			//imshow("Left Eye Template", ltempl);
+			imshow("Left Eye Template", ltempl);
 			if ((int)tstddev[0] < 10){
 				badTemplate = true;
 			}
@@ -275,7 +275,7 @@ int TargetFinder::detectEye(Mat& img, Mat& rtempl, Mat& ltempl, Mat& ftempl, Mat
 			nbox = noses[0] + cv::Point(faces[i].x, faces[i].y);
 			ntempl = img(nbox);
 			meanStdDev(ntempl, tmean, tstddev, Mat());
-			//imshow("NoseTemplate", ntempl);
+			imshow("NoseTemplate", ntempl);
 			if ((int)tstddev[0] < 10){
 				badTemplate = true;
 			}
@@ -288,7 +288,7 @@ int TargetFinder::detectEye(Mat& img, Mat& rtempl, Mat& ltempl, Mat& ftempl, Mat
 mbox = mouthes[0] + cv::Point(faces[i].x, faces[i].y + faces[i].height / 2);
 mtempl = img(mbox);
 meanStdDev(mtempl, tmean, tstddev, Mat());
-//imshow("MouthTemplate", mtempl);
+imshow("MouthTemplate", mtempl);
 if ((int)tstddev[0] < 10){
 	badTemplate = true;
 }
